@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.getElementById("secure-contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", function(event) {
-            event.preventDefault(); /
+            event.preventDefault();
 
             const data = new FormData(event.target);
             const submitButton = contactForm.querySelector('button[type="submit"]');
