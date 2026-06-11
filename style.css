@@ -1,0 +1,168 @@
+/**
+ * Argha.dev Core Styling Architecture
+ */
+
+/* ==========================================================================
+   1. Base Settings & Viewport Reset
+   ========================================================================== */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #060913;
+    overflow-x: hidden;
+    transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+}
+
+/* ==========================================================================
+   2. Typography & Core UI Components
+   ========================================================================== */
+/* High-end gradient text flow */
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    
+    /* 1. Webkit prefix must come first for Safari/Chrome support */
+    -webkit-background-clip: text;
+    
+    /* 2. Standard property must be declared right after */
+    background-clip: text;
+    
+    /* 3. This must follow to let the background show through the text */
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphic card system */
+.glass-card {
+    background: rgba(11, 17, 34, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* ==========================================================================
+   3. Animation Hooks & Interactive States
+   ========================================================================== */
+/* Letter-splitting utility class used by AnimeJS engine */
+.animate-letters .letter {
+    display: inline-block;
+    opacity: 0;
+    transform-origin: 50% 100%;
+}
+
+/* On-scroll reveal framework elements */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-element.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ambient Backlighting Pulse sequence loops */
+@keyframes warmPulse {
+    0%, 100% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(120px);
+    }
+    50% {
+        opacity: 0.12;
+        transform: translate(-50%, -50%) scale(0.9);
+        filter: blur(140px);
+    }
+}
+
+.warm-ambient-glow {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(254, 243, 199, 0.8) 0%, rgba(253, 230, 138, 0.2) 45%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: warmPulse 7s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   4. Backlighting Effects (Lights On Mode)
+   ========================================================================== */
+.lights-up-top, .lights-up-bottom {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lights-up-top {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(254, 243, 199, 0.15) 0%, rgba(254, 243, 199, 0.03) 50%, transparent 100%);
+    border-top: 3px solid rgba(254, 243, 199, 0.5);
+}
+
+.lights-up-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(254, 243, 199, 0.15) 0%, rgba(254, 243, 199, 0.03) 50%, transparent 100%);
+    border-bottom: 3px solid rgba(254, 243, 199, 0.5);
+}
+
+body.lights-on-active .lights-up-top,
+body.lights-on-active .lights-up-bottom {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   5. Theme Environment Variations
+   ========================================================================== */
+/* Day Mode Configurations */
+body.env-day {
+    background-color: #f4f6fa;
+    color: #1e293b;
+}
+
+body.env-day .glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+}
+
+body.env-day h1, 
+body.env-day h2:not(#greeting-text), 
+body.env-day h3, 
+body.env-day .text-white {
+    color: #0f172a !important;
+}
+
+body.env-day .text-gray-400, 
+body.env-day .text-gray-300 {
+    color: #475569;
+}
+
+body.env-day .bg-gray-900, 
+body.env-day .bg-gray-950\/40 {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+}
+
+/* Evening Mode Configurations */
+body.env-evening {
+    background-color: #160f1e;
+    color: #e2dbe8;
+}
+
+body.env-evening .glass-card {
+    background: rgba(28, 18, 38, 0.7);
+    border-color: rgba(236, 72, 153, 0.1);
+}
+
+body.env-evening .warm-ambient-glow {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 70%);
+}
