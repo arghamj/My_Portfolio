@@ -1,9 +1,5 @@
-/**
- * Argha.dev Application Logic Engine
- */
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Theme Configuration Environment Engine
     const envBtn = document.getElementById("env-dropdown-btn");
     const envMenu = document.getElementById("env-dropdown-menu");
     const activeIcon = document.getElementById("active-env-icon");
@@ -45,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Viewport Edge Spotlight Switch (Backlighting control)
+    
     const lightToggleBtn = document.getElementById("lights-toggle-switch");
     const lightIcon = document.getElementById("lightbulb-status-icon");
 
@@ -59,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Greeting Text Typography Character Splitting Execution
+    
     const greetingEl = document.getElementById("greeting-text");
     if (greetingEl) {
         greetingEl.innerHTML = greetingEl.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
     }
 
-    // 4. AnimeJS Entrance Timeline Initialization
+    
     if (typeof anime !== "undefined" && greetingEl) {
         const introTimeline = anime.timeline({ easing: 'easeOutElastic(1, .6)', autoplay: true });
         
@@ -114,11 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
-    // 6. Form Submission Validation & Formspree Background Engine (NEW)
+    
     const contactForm = document.getElementById("secure-contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Browser ko automatic reload hone se rokega
+            event.preventDefault(); /
 
             const data = new FormData(event.target);
             const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -128,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 submitButton.disabled = true;
             }
 
-            // AJAX call through background request dispatch
+    
             fetch(event.target.action, {
                 method: event.target.method,
                 body: data,
